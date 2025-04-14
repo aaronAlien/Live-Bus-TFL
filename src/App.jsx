@@ -48,7 +48,7 @@ function App() {
       {error && <p className='text-red-600 my-6 text-center'>{error}</p>}
       {stopInfo && <BusArrival stopInfo={stopInfo} arrivals={arrivals} />}
     </div>
-      <Footer />
+    <Footer />
 
 </>
   );
