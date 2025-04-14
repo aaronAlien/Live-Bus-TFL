@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic&display=swap');
+@import "tailwindcss";
+
+@layer utilities {
+    .font-special-gothic {
+        font-family: 'Special Gothic', sans-serif;
+    }
+    .bg-light-cream {
+      background-color: #fef6e6;
+    }
+    .text-light-cream {
+      color: #fef6e6;
+    }
+    .text-accent-1 {
+      color: #d25b4c;
+    }
+  
+    .bg-accent-1 {
+      background-color: #d25b4c;
+    }
+  
+    .border-accent-1 {
+      border-color: #d25b4c;
+    }
+  
+    .text-accent-2 {
+      color: #1f2023;
+    }
+  
+    .bg-accent-2 {
+      background-color: #1f2023;
+    }
+  
+    .border-accent-2 {
+      border-color: #1f2023;
+    }
+  }
+
+  @layer components {
+    html {
+      font-family: 'Special Gothic', sans-serif;
+      background: #fef6e6;
+    }
+}
