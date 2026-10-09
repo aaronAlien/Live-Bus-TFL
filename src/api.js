@@ -1,6 +1,6 @@
 // broswer side api layer
 
-export class TflApi {
+export class TflError extends Error {
     constructor(status, message) {
         super(message);
         this.name = "TflError";
@@ -12,7 +12,7 @@ export class TflApi {
 function messageFor(status) {
     if (status === 404) return "We couldn't find that. Please check the code or try again";
     if (status === 429) return "Too many requests. Please try again later";
-    if (status <= 500) return "TFL isn't responding. Please try again later";
+    if (status >= 500) return "TfL isn't responding.";
     return "Something went wrong fetching data."
 }
 
@@ -34,8 +34,8 @@ export async function tflRequest(path, params = {}, fetchFn = fetch) {
 // stops
 
 // 5 digit sms code from bus stop sign -> full object in one call
-export async function getStopDetails(code, fetchFn = fetch) {
-    const notFound = new TflError(404, `We couldn't find bus stop with code ${code}`);
+export async function getStopByCode(code, fetchFn = fetch) {
+    const notFound = new TflError(404, `No bus stop found with code ${code}.`);
 
     let stop;
     

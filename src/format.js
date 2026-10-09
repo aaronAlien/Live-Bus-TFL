@@ -2,7 +2,7 @@
 
 // input
 export function parseStopCode(input) {
-    const code = String(input ?? "".replace(/\s+/g, ""));
+    const code = String(input ?? "").replace(/\s+/g, "");
 
     if (code === "") {
         return { ok: false, error: "Please enter the 5-digit code from the bus stop sign." };
@@ -42,7 +42,7 @@ export function getStopDetails(stop, arrivals = []) {
     return {
         id: stop?.naptanId || stop?.id || null,
         name: stop?.commonName || "Unknown stop",
-        letter: cleanLetter(stop?.stopLetter || first?.platformName),
+        letter: cleanLetter(stop?.stopLetter) || cleanLetter(first?.platformName),
         towards: towardsProp || first?.towards || null,
         routes: (stop?.lines ?? []).map((line) => line.name),
     };
