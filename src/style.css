@@ -1,0 +1,224 @@
+:root {
+  --cream: #fef6e6;
+  --ink: #1f2023;
+  --ink-soft: #4a4b50;
+  --accent: #d25b4c;
+  --route-bg: #dc241f; /* TfL bus red */
+  --route-text: #ffffff;
+  --error: #a3261a;
+  --surface: #ffffff;
+  --line: #e7dcc6;
+
+  --radius: 10px;
+  --space: 1rem;
+  --font: "Special Gothic", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font);
+  line-height: 1.5;
+}
+
+.app {
+  flex: 1;
+  width: 100%;
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: calc(var(--space) * 2.5) var(--space) calc(var(--space) * 2);
+}
+
+.app-title {
+  margin: 0 0 calc(var(--space) * 1.5);
+  font-size: clamp(1.75rem, 6vw, 2.25rem);
+  letter-spacing: 0.04em;
+  font-weight: 700;
+}
+
+/* search */
+
+.search-label {
+  display: block;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.hint {
+  margin: 0.15rem 0 0.6rem;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+.search-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0.9rem;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.25rem;
+  letter-spacing: 0.15em;
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--error);
+}
+
+button {
+  padding: 0.7rem 1.4rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--cream);
+  font: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* visible keyboard focus */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.field-error {
+  margin: 0.5rem 0 0;
+  color: var(--error);
+  font-weight: 600;
+}
+
+/* results */
+
+.results {
+  margin-top: calc(var(--space) * 2);
+}
+
+.status {
+  margin: 0 0 var(--space);
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+.status:empty {
+  display: none;
+}
+
+.board {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 0 var(--line), 0 8px 24px rgb(31 32 35 / 0.08);
+  overflow: hidden;
+}
+
+.stop {
+  padding: var(--space) calc(var(--space) * 1.25);
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.stop-name {
+  margin: 0;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stop-meta {
+  margin: 0.15rem 0 0;
+  opacity: 0.85;
+}
+
+.arrivals {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.arrival {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  align-items: center;
+  gap: var(--space);
+  padding: 0.8rem calc(var(--space) * 1.25);
+  border-top: 1px solid var(--line);
+}
+
+.arrival:first-child {
+  border-top: 0;
+}
+
+.route {
+  justify-self: start;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  background: var(--route-bg);
+  color: var(--route-text);
+  font-weight: 700;
+}
+
+.destination {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.due {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* footer */
+
+.site-footer {
+  padding: var(--space);
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.site-footer p {
+  margin: 0.25rem 0 0;
+}
+
+.site-footer a {
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* accessibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -48,7 +48,15 @@ function renderBoard(stop, arrivals) {
   list.replaceChildren(...sortArrivals(arrivals).map(renderRow));
   board.hidden = false;
 
-  status.textContent = arrivals.length ? `${arrivals.length} due at ${details.name}.` : `No buses due at ${details.name} right now.`;
+  if (arrivals.length) {
+    // hide text but still announce to screen readers
+    status.textContent = `${arrivals.length} buses due at ${details.name}`;
+    status.classList.add("visually-hidden");
+  } else {
+    // if no buses display for all users
+    status.textContent = `No buses due at ${details.name} right now.`;
+    status.classList.remove("visually-hidden");
+  }
 }
 
 // data
@@ -57,6 +65,7 @@ async function loadStop(code) {
     const requestId = ++latestRequest;
     results.setAttribute("aria-busy", "true");
     status.textContent = "Loading live bus times...";
+    status.classList.remove("visually-hidden");
     board.hidden = true;
 
     try {

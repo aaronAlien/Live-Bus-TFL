@@ -24,7 +24,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: "Endpoint not allowed" });
     }
 
-    const key = process.env.TFL_API_KEY; // server only no vite
+    const key = process.env.TFL_APP_KEY; // server only no vite
 
     if (!key) {
         return res.status(500).json({ error: "Server missing TFL_API_KEY" });

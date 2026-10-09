@@ -45,7 +45,7 @@ export async function getStopByCode(code, fetchFn = fetch) {
         throw err.status === 404 ? notFound : err;
     }
 
-    if (!stop || !stop.naptanId || stop.id) throw notFound;
+    if (!stop || !(stop.naptanId || stop.id)) throw notFound;
     return stop;
 }
 
