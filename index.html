@@ -2,12 +2,71 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/bus.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live Bus</title>
+    <title>Live Bus Times</title>
+    <meta name="description" content="Live London bus arrival times using TfL open data." />
+    <link rel="icon" type="image/svg+xml" href="/bus.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Special+Gothic&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <main class="app">
+      <h1 class="app-title">Live Bus Times</h1>
+
+      <form id="search-form" class="search" novalidate>
+        <label for="stop-code" class="search-label">Bus stop code</label>
+        <p id="stop-code-hint" class="hint">
+          The 5-digit number on the sign at the bus stop, e.g. 71244
+        </p>
+        <div class="search-row">
+          <input
+            id="stop-code"
+            name="stop-code"
+            type="text"
+            inputmode="numeric"
+            autocomplete="off"
+            maxlength="5"
+            aria-describedby="stop-code-hint stop-code-error"
+          />
+          <button type="submit">Go</button>
+        </div>
+        <p id="stop-code-error" class="field-error" hidden></p>
+      </form>
+
+      <section id="results" class="results" aria-busy="false">
+        <!-- only this line is announced to screen readers, refreshing won't read the whole list out -->
+        <p id="status" class="status" role="status"></p>
+
+        <article id="board" class="board" hidden>
+          <header class="stop">
+            <h2 id="stop-name" class="stop-name"></h2>
+            <p id="stop-meta" class="stop-meta"></p>
+          </header>
+          <ol id="arrivals" class="arrivals"></ol>
+          <footer class="board-footer">
+            <p id="updated" class="updated"></p>
+            <button id="refresh" class="refresh" type="button">Refresh</button>
+          </footer>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="https://linktr.ee/thatshakespeare" target="_blank" rel="noopener">by Aaron H Shakespeare</a>
+      <p>Powered by TfL Open Data</p>
+    </footer>
+
+    <!-- one arrival per row. in js, filled with textContent not innerHTML -->
+    <template id="arrival-row">
+      <li class="arrival">
+        <span class="route"></span>
+        <span class="destination"></span>
+        <span class="due"></span>
+      </li>
+    </template>
+
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
