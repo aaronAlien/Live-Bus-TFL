@@ -191,6 +191,34 @@ button:hover {
   white-space: nowrap;
 }
 
+/* board footer */
+
+.board-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space);
+  padding: 0.75rem calc(var(--space) * 1.25);
+  border-top: 1px solid var(--line);
+}
+
+.updated {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.refresh {
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+}
+
+.refresh[aria-busy="true"] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
 /* footer */
 
 .site-footer {

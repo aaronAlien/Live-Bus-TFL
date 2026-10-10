@@ -27,6 +27,13 @@ export function sortArrivals(arrivals = []) {
     return [...arrivals].sort((a, b) => a.timeToStation - b.timeToStation);
 }
 
+// update
+export function formatUpdatedAgo(seconds, failed = false) {
+    if (failed) return "Couldn't refresh - showing older times";
+    if (seconds < 10) return "Updated just now";
+    return ""; // blank label
+}
+
 // stop details & stops with no letter.
 function cleanLetter(letter) {
     if (!letter || letter === "null" || letter.startsWith("->")) return null;

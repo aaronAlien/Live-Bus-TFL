@@ -7,6 +7,7 @@ import {
   sortArrivals,
   getStopDetails,
   formatStopMeta,
+  formatUpdatedAgo,
 } from "../src/format.js";
 
 describe("parseStopCode", () => {
@@ -94,5 +95,20 @@ describe("formatStopMeta", () => {
     expect(formatStopMeta({ letter: "K", towards: "Oval" })).toBe("Stop K - towards Oval");
     expect(formatStopMeta({ letter: null, towards: "Oval" })).toBe("towards Oval");
     expect(formatStopMeta({ letter: null, towards: null })).toBe("");
+  });
+});
+
+describe("formatUpdatedAgo", () => {
+  it.each([
+    [0, "Updated just now"],
+    [9, "Updated just now"],
+    [10, ""],
+    [150, ""],
+  ])("%i seconds -> %j", (seconds, expected) => {
+    expect(formatUpdatedAgo(seconds)).toBe(expected);
+  });
+
+  it.each([3, 45])("says when the last refresh failed (%i seconds)", (seconds) => {
+    expect(formatUpdatedAgo(seconds, true)).toBe("Couldn't refresh - showing older times");
   });
 });
