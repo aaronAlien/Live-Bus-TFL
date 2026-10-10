@@ -42,6 +42,7 @@ export default async function handler(req, res) {
 
         return res.status(tflRes.status).send(body);
     } catch (error) {
+        console.error("TfL request failed:", error);
         return res.status(502).json({ error: "Could not reach TFL" });
     }
 }
